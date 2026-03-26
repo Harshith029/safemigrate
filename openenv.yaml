@@ -1,0 +1,43 @@
+name: safemigrate
+version: "1.0.0"
+license: MIT
+description: "Safety-critical database migration environment where AI agents must plan, checkpoint, execute, and recover from failures under strict safety constraints"
+author: "Krishna"
+tags:
+  - openenv
+  - database
+  - migration
+  - safety-critical
+  - sql
+  - schema-management
+  - reinforcement-learning
+
+environment:
+  class: server.environment.SafeMigrateEnvironment
+  action: models.MigrationAction
+  observation: models.MigrationObservation
+  state: models.MigrationState
+
+tasks:
+  - id: easy_add_columns
+    difficulty: easy
+    title: "Add columns to employee table"
+    description: "Add email, hire_date, and is_active columns preserving all data"
+
+  - id: medium_normalize_tables
+    difficulty: medium
+    title: "Normalize database schema"
+    description: "Extract addresses and order items into separate tables with referential integrity"
+
+  - id: hard_full_restructure
+    difficulty: hard
+    title: "Full schema restructure with dirty data handling"
+    description: "Multi-table restructure with case-insensitive deduplication, NULL handling, and inventory tracking"
+
+endpoints:
+  reset: /reset
+  step: /step
+  state: /state
+  tasks: /tasks
+  grader: /grader
+  baseline: /baseline
