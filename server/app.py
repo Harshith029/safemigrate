@@ -55,7 +55,15 @@ class StepRequest(BaseModel):
 def health():
     return {"status": "ok", "environment": "safemigrate", "version": "1.0.0"}
 
-
+@app.get("/")
+def root():
+    return {
+        "name": "safemigrate",
+        "description": "Safety-critical database migration environment for AI agents",
+        "version": "1.0.0",
+        "endpoints": ["/health", "/reset", "/step", "/state", "/tasks", "/grader", "/baseline"],
+    }
+    
 @app.post("/reset")
 def reset(req: ResetRequest):
     env = get_or_create_env(req.session_id)
