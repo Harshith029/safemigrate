@@ -1,3 +1,16 @@
+---
+title: SafeMigrate
+emoji: 🛡️
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+tags:
+  - openenv
+license: mit
+short_description: "Safety-critical database migration environment for AI agents"
+---
+
 # SafeMigrate — Safety-Critical Database Migration Environment
 
 > **SafeMigrate is the first OpenEnv benchmark for safety-critical infrastructure transformations.** Naive solutions fail due to hidden data inconsistencies, ordering dependencies, and irreversible consequences.
