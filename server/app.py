@@ -131,3 +131,12 @@ def grader(session_id: str = "default"):
 @app.get("/baseline")
 def baseline():
     return run_baseline()
+
+
+def main():
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=7860)
+
+
+if __name__ == "__main__":
+    main()
