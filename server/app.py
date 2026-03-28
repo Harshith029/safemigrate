@@ -43,7 +43,7 @@ class ResetRequest(BaseModel):
 
 
 class StepRequest(BaseModel):
-    command: str
+    command: str = "inspect_schema"
     sql: Optional[str] = None
     table: Optional[str] = None
     savepoint_name: Optional[str] = None
@@ -55,6 +55,7 @@ class StepRequest(BaseModel):
 def health():
     return {"status": "ok", "environment": "safemigrate", "version": "1.0.0"}
 
+
 @app.get("/")
 def root():
     return {
@@ -63,16 +64,21 @@ def root():
         "version": "1.0.0",
         "endpoints": ["/health", "/reset", "/step", "/state", "/tasks", "/grader", "/baseline"],
     }
-    
+
+
 @app.post("/reset")
-def reset(req: ResetRequest):
+def reset(req: Optional[ResetRequest] = None):
+    if req is None:
+        req = ResetRequest()
     env = get_or_create_env(req.session_id)
     obs = env.reset(task_id=req.task_id, seed=req.seed)
     return obs.model_dump()
 
 
 @app.post("/step")
-def step(req: StepRequest):
+def step(req: Optional[StepRequest] = None):
+    if req is None:
+        req = StepRequest()
     env = get_or_create_env(req.session_id)
     action = MigrationAction(
         command=req.command,
