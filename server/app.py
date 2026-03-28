@@ -80,13 +80,7 @@ def step(req: Optional[StepRequest] = None):
     if req is None:
         req = StepRequest()
     env = get_or_create_env(req.session_id)
-    action = MigrationAction(
-        command=req.command,
-        sql=req.sql,
-        table=req.table,
-        savepoint_name=req.savepoint_name,
-        plan=req.plan,
-    )
+    action = MigrationAction(command=req.command, sql=req.sql, table=req.table, savepoint_name=req.savepoint_name, plan=req.plan)
     obs = env.step(action)
     return obs.model_dump()
 
