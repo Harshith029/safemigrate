@@ -1,15 +1,3 @@
----
-title: SafeMigrate
-emoji: 🛡️
-colorFrom: blue
-colorTo: green
-sdk: docker
-app_port: 7860
-tags:
-  - openenv
-license: mit
-short_description: "Safety-critical database migration environment for AI agents"
----
 
 # SafeMigrate — Safety-Critical Database Migration Environment
 
